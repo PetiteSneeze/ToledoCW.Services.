@@ -30,7 +30,7 @@ public class ToledoCWContext : DbContext
     {
         base.OnConfiguring(optionsBuilder);
 
-        optionsBuilder.UseMySQL("Server=localhost;Database=toledocw;Uid=root;Pwd=123456;");
+        optionsBuilder.UseMySQL("Server=localhost;Database=toledocw;Uid=root;Pwd=root321;");
         
         optionsBuilder.UseLoggerFactory(Logger)
             .EnableSensitiveDataLogging()
@@ -46,6 +46,22 @@ public class ToledoCWContext : DbContext
             builder.ToTable("atendente");
             builder.Property(x => x.Id).IsRequired();
             builder.Property(x => x.Nome).HasMaxLength(100).IsRequired();
+            builder.Property(x => x.Estabelecimento).IsRequired();
+
+            builder.HasOne(x => x.EstabelecimentoObj).WithMany().HasForeignKey(x => x.Estabelecimento).IsRequired();
+        });
+        
+        modelBuilder.Entity<Estabelecimento>(builder =>
+        {
+            builder.ToTable("estabelecimento");
+            builder.Property(x => x.Id).IsRequired();
+            builder.Property(x => x.Nome).HasMaxLength(100).IsRequired();
+            
+            builder.HasData(new Estabelecimento
+            {
+                Id = 1,
+                Nome = "Estabelecimento 1"
+            });
         });
     }
 }
