@@ -32,12 +32,12 @@ public class ApiResponse
     [DataMember(Name = "errors")]
     [XmlArray("errors", Namespace = "")]
     [XmlArrayItem("error", Namespace = "")]
-    public IEnumerable<ApiResponseError>? Errors { get; set; }
+    public IEnumerable<ApiResponseError> Errors { get; set; }
 
     [DataMember(Name = "messages")]
     [XmlArray("messages", Namespace = "")]
     [XmlArrayItem("message", Namespace = "")]
-    public IEnumerable<ApiResponseMessage>? Messages { get; set; }
+    public IEnumerable<ApiResponseMessage> Messages { get; set; }
 }
 
 

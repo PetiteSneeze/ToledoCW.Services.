@@ -12,7 +12,7 @@ public class ApiResponseError
         Id = new Guid();
     }
 
-    public ApiResponseError(string value, string? key = null) : base()
+    public ApiResponseError(string value, string key = null) : base()
     {
         Key = key ?? "Error";
         Value = value;
