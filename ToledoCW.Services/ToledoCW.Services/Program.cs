@@ -1,3 +1,5 @@
+using ToledoCW.Services.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -14,6 +16,9 @@ builder.Services.AddCors(options =>
         
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<INotificationService, NotificationService>();
+builder.Services.AddScoped<IEstabelecimentoService, EstabelecimentoService>();
 
 var app = builder.Build();
 
