@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace ToledoCW.Services.Infraestructure.Repositorios;
 
-public class RepositorioBase<T> where T : class
+public class RepositorioBase<T> : IRepositorioBase<T> where T : class
 {
     protected readonly DbContext DbContext;
     protected readonly DbSet<T> DbSet;
 
-    public RepositorioBase(DbContext dbContext)
+    public RepositorioBase(ToledoCWContext dbContext)
     {
         DbContext = dbContext;
         DbSet = DbContext.Set<T>();

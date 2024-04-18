@@ -1,37 +1,11 @@
-using ToledoCW.Services.Services;
+using ToledoCW.Services.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-        
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("Padrao",
-        x => x
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-    );
-});
-        
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddScoped<INotificationService, NotificationService>();
-builder.Services.AddScoped<IEstabelecimentoService, EstabelecimentoService>();
+builder.Services.AddServices(builder.Configuration);
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseCors("Padrao");
-
-app.MapControllers();
-        
-app.UseHttpsRedirection();
+await app.UseWebApplication(builder.Configuration);
 
 app.Run();

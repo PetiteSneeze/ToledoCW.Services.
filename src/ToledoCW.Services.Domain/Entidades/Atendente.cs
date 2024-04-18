@@ -1,9 +1,4 @@
 using FluentValidation;
-
-
-
-
-
 namespace ToledoCW.Services.Infraestructure.Entidades;
 
 public class Atendente
